@@ -1,0 +1,26 @@
+/*lex code to count the number of lines,word,tab and spaces*/
+%{ #include <stdio.h> 
+int char= 0,word=0, nline = 0, tab = 0, space=0; 
+%} 
+
+%% 
+\n {nline++;word++;}
+[ ] space++;
+\t tab++;
+.char++;
+%% 
+int main() 
+ { 
+yyin=fopen("example2.txt","r");
+yylex(); 
+printf("enter the commamd>>"); 
+printf("\n %d line",nline);
+printf("\n %d word",word);
+printf("\n %d character",char);
+printf("\n %d space",space);
+printf("\n %d tab",tab);
+}
+int yywrap()
+{
+return 1;
+}
